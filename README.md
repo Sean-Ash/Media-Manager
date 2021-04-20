@@ -14,7 +14,7 @@ It's intended use it to have the user input folders one by one, from most import
 
 Using a test folder of 1000 files and three folders totalling 1GB of space, the program loaded the directory in 3954ms and removed 991 duplicate files in 1507640ms (about 1 duplicate file every 1.5s).
 
-On my personal media hoard of 137GB, it scanned a total of 86k files across 402 folders in 104732ms, removed 2075 duplicates using the folders I had selected in a total of 4461157ms, and finished with a full redundant media removal of an extra 2572 files in 4117327ms.
+On my personal media hoard of 137GB, it scanned a total of 86k files across 402 folders in 104732ms, removed 2075 duplicates using the 13 subfolders I had selected in a total of 4461157ms, and finished with a full redundant media removal of an extra 2572 files in 4117327ms.
 
 
 
