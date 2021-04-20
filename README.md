@@ -1,5 +1,5 @@
 # Media-Manager
-A c++ windows application to find and delete redundant media files found in a directory for Windows 8.1 OS
+A windows application written in c++ to find and delete redundant media files found in a directory for Windows 8.1
 
 The program was made using VS community 2015, C++ 14.0, and boost_1_75_0\stage\win32\lib
 
