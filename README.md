@@ -18,7 +18,7 @@ On my personal media hoard of 137GB, it scanned a total of 86k files across 402 
 
 
 
-##Changes that can be made in the future:
+## Changes that can be made in the future:
 
 The buffers used to check images are set at a flat 250MB and must be zeroed after every check.
 Can instead only read and zero memory space matching the actual filesize.
