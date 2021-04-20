@@ -20,17 +20,17 @@ On my personal media hoard of 137GB, it scanned a total of 86k files across 402 
 
 ## Changes that can be made in the future:
 
-The buffers used to check images are set at a flat 250MB and must be zeroed after every check.
+The buffers used to check images are set at a flat 250MB and must be zeroed after every check.<br/>
 Can instead only read and zero memory space matching the actual filesize.
 
-Read speed is determined mostly by hardware, but deletion speed can be increased by multithreading that portion of code
+Read speed is determined mostly by hardware, but deletion speed can be increased by multithreading that portion of code.<br/>
 Add multithreading.
 
-There is currently no error checking, so for an example, a char input on the main menu will simply break the program.
+There is currently no error checking, so for an example, a char input on the main menu will simply break the program.<br/>
 Add error checking.
 
-The program is also sometimes intercepted and throttled by antivirus software.
+The program is also sometimes intercepted and throttled by antivirus software.<br/>
 Might be able to whitelist or encapsulate it, or just ask user disable antivirus at runtime if it matters.
 
-Currently, the only purpose of the database the program writes is to allow the user to resume where they left off if they close the program.
+Currently, the only purpose of the database the program writes is to allow the user to resume where they left off if they close the program.<br/>
 It's arguably faster to just perform another directory read operation on startup, so it might be better to just remove it.
