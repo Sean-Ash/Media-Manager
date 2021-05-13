@@ -3,34 +3,34 @@ A windows application written in c++ to find and delete redundant media files fo
 
 The program was made using VS community 2015, C++ 14.0, and boost_1_75_0\stage\win32\lib
 
-Duplicate media files are found by first loading every file of the desired type from a chosen directory into a multimap, which is then trimmed into a smaller multimap that only contains files that had a filesize matching at least one other file in the directory (potential duplicates).
-After the filesize scan, the files are opened in binary mode via ifstream and a partial hash is performed on them for further identification.
-Then, during a duplicate media scan, any files loaded into the trimmed multimap that have a filesize and hash value that match (and are under the 250MB filesize limit), are checked byte by byte to insure they are an exact match before a file is deleted
+This is a console application program where a user inputs the root directory of their media library. After that, the user may choose a subdirectory from within that root directory to perform a partial duplicate file scan, or they may simply choose to delete all duplicate files from the entire directory. This is a multithreaded program running on main + 4 additional threads used for file comparison.
 
-The program takes in a user input root directory, such as G:\projects\test images, and finds all repeat .jpg, .jpeg, .png, .gif, and .webm files within.
-The user is then prompted whether they would like to organize their media collection manually (scan the main directory from a subfolder, where the subfolder will contain the remaining media copy), or to simply remove all but one copy of each duplicate file which will be left arbitrarily wherever it was first found.
-
-It's intended use it to have the user input folders one by one, from most important to least, to retain the users preferred file structure and to only perform a full duplicate removal once that is finished.
-
-Using a test folder of 1000 files and three folders totalling 1GB of space, the program loaded the directory in 3954ms and removed 991 duplicate files in 1507640ms (about 1 duplicate file every 1.5s).
-
-On my personal media hoard of 137GB, it scanned a total of 86k files across 402 folders in 104732ms, removed 2075 duplicates using the 13 subfolders I had selected in a total of 4461157ms, and finished with a full redundant media removal of an extra 2572 files in 4117327ms.
+An example of a valid directory is G:\projects\test images, and the currently supported filetypes are .jpg, .jpeg, .png, .gif, and .webm files up to a size of 75MB (larger files and files of other types are skipped, but the maximum size may be adjusted up to 2GB depending on available RAM; each thread requires 2 buffers, so 4 threads would use 16GB of RAM in that scenario)
 
 
+### Here is an example of the program in motion
 
-## Changes that can be made in the future:
+The main menu
 
-The buffers used to check images are set at a flat 250MB and must be zeroed after every check.<br/>
-Can instead only read and zero memory space matching the actual filesize.
+![main menu](https://user-images.githubusercontent.com/43391569/118060953-93ea5000-b359-11eb-88dc-e78a9ab2a3fe.PNG)
 
-Read speed is determined mostly by hardware, but deletion speed can be increased by multithreading that portion of code.<br/>
-Add multithreading.
+My chosen filespace
 
-There is currently no error checking, so for an example, a char input on the main menu will simply break the program.<br/>
-Add error checking.
+![filespace (before)](https://user-images.githubusercontent.com/43391569/118060510-8e403a80-b358-11eb-8729-a38aff420cdc.PNG)
 
-The program is also sometimes intercepted and throttled by antivirus software.<br/>
-Might be able to whitelist or encapsulate it, or just ask user disable antivirus at runtime if it matters.
+And the program reading the filespace
 
-Currently, the only purpose of the database the program writes is to allow the user to resume where they left off if they close the program.<br/>
-It's arguably faster to just perform another directory read operation on startup, so it might be better to just remove it.
+![file input](https://user-images.githubusercontent.com/43391569/118060475-7cf72e00-b358-11eb-97cd-ee94759845bc.PNG)
+
+The program scanning from a subdirectory located within my filespace
+
+![run from subdirectory](https://user-images.githubusercontent.com/43391569/118060602-baf45200-b358-11eb-8ef8-a7e37b6a971e.PNG)
+
+The program running a full scan after I finished with the folders I wanted to
+
+![input31](https://user-images.githubusercontent.com/43391569/118060527-939d8500-b358-11eb-85bd-050fdda7789f.PNG)
+![input32](https://user-images.githubusercontent.com/43391569/118060573-a912af00-b358-11eb-8c19-29626081e8dc.PNG)
+
+And my filespace after all duplicates were removed
+
+![filespace (after)](https://user-images.githubusercontent.com/43391569/118060622-c6477d80-b358-11eb-8b35-11767cdaacd4.PNG)
